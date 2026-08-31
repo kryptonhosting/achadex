@@ -1,24 +1,23 @@
-/* app/layout.tsx */
-import type { Metadata } from 'node_modules/next' with { 'resolution-mode': 'import' };
-import { Inter, Space_Grotesk } from 'next/font/google';
+import type { Metadata } from 'next';
+import { Space_Grotesk, Inter } from 'next/font/google';
 import './globals.css';
+import 'leaflet/dist/leaflet.css';
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+  weight: ['700'],
+});
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
-  display: 'swap',
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  weight: ['700'],
-  variable: '--font-space',
-  display: 'swap',
+  weight: ['400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = {
   title: 'Achadex - Ache antes, pague menos',
-  description: 'Encontre os melhores preços perto de você em tempo real.',
+  description: 'Rede social de achados de mercado com mapa em tempo real',
 };
 
 export default function RootLayout({
@@ -27,8 +26,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} ${spaceGrotesk.variable}`}>
-      <body className="bg-[#0A0A0A] text-white antialiased min-h-screen selection:bg-[#D4FF32] selection:text-black">
+    <html lang="pt-BR" className={`${spaceGrotesk.variable} ${inter.variable}`}>
+      <body className="bg-[#0A0A0A] text-white min-h-screen">
         {children}
       </body>
     </html>
